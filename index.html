@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <meta name="theme-color" content="#0b2a4a">
+
+    <meta name="description"
+          content="DI Dental Clinic Patient Appointment">
+
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+
+    <title>DI Dental Clinic</title>
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+</head>
+
+<body>
+
+<main class="app">
+
+<header class="header">
+
+    <img
+        src="clinic-header.jpg"
+        alt="DI Dental Clinic"
+        class="clinic-header-image">
+
+    <p>Patient Appointment Form</p>
+
+</header>
+
+
+    <nav class="tabs">
+
+        <button class="tab active"
+                data-section="newPatientSection">
+            New Patient
+        </button>
+
+        <button class="tab"
+                data-section="nextAppointmentSection">
+            Next Appointment
+        </button>
+
+    </nav>
+
+
+    <!-- NEW PATIENT -->
+
+    <section id="newPatientSection"
+             class="card section active">
+
+        <h2>Register New Patient</h2>
+
+        <form id="registerForm">
+
+            <label>
+                Patient Name
+
+                <input
+                    id="name"
+                    type="text"
+                    autocomplete="name"
+                    required>
+            </label>
+
+
+            <label>
+                Mobile Number
+
+                <input
+                    id="mobile"
+                    type="tel"
+                    inputmode="numeric"
+                    autocomplete="tel"
+                    maxlength="10"
+                    required>
+            </label>
+
+
+            <div class="row">
+
+                <label>
+                    Appointment Date
+
+                    <input
+                        id="appointmentDate"
+                        type="date"
+                        required>
+                </label>
+
+
+                <label>
+                    Appointment Time
+
+                    <input
+                        id="appointmentTime"
+                        type="time"
+                        required>
+                </label>
+
+            </div>
+
+
+            <button
+                class="primary"
+                type="submit">
+
+                Register Patient
+
+            </button>
+
+        </form>
+
+    </section>
+
+
+
+    <!-- NEXT APPOINTMENT -->
+
+    <section id="nextAppointmentSection"
+             class="card section">
+
+        <h2>Schedule Next Appointment</h2>
+
+        <form id="nextAppointmentForm">
+
+            <label>
+                Patient ID
+
+                <input
+                    id="patientId"
+                    type="text"
+                    placeholder="e.g. P000002"
+                    autocapitalize="characters"
+                    required>
+            </label>
+
+
+            <div class="row">
+
+                <label>
+                    Appointment Date
+
+                    <input
+                        id="nextAppointmentDate"
+                        type="date"
+                        required>
+                </label>
+
+
+                <label>
+                    Appointment Time
+
+                    <input
+                        id="nextAppointmentTime"
+                        type="time"
+                        required>
+                </label>
+
+            </div>
+
+
+            <button
+                class="primary"
+                type="submit">
+
+                Schedule Appointment
+
+            </button>
+
+        </form>
+
+
+        <p class="hint">
+            Enter the existing patient's Patient ID to schedule
+            their next appointment.
+        </p>
+
+    </section>
+
+
+
+    <!-- MESSAGE -->
+
+    <div
+        id="message"
+        class="message hidden"
+        role="status"
+        aria-live="polite">
+    </div>
+
+
+    <footer>
+        <span id="connectionStatus">
+            Ready
+        </span>
+    </footer>
+
+</main>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
