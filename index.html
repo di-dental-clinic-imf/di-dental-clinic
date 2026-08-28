@@ -132,16 +132,20 @@
         <form id="nextAppointmentForm">
 
             <label>
-                Patient ID
+                Find Patient
 
                 <input
-                    id="patientId"
-                    type="text"
-                    placeholder="e.g. P000002"
-                    autocapitalize="characters"
-                    required>
+                    id="patientSearch"
+                    type="search"
+                    placeholder="Search name, mobile or Patient ID"
+                    autocomplete="off">
             </label>
 
+            <div id="patientSearchResults" class="patient-search-results hidden" aria-live="polite"></div>
+
+            <div id="selectedPatient" class="selected-patient hidden" aria-live="polite"></div>
+
+            <input id="patientId" type="hidden" required>
 
             <div class="row">
 
@@ -179,8 +183,7 @@
 
 
         <p class="hint">
-            Enter the existing patient's Patient ID to schedule
-            their next appointment.
+            Search by patient name, mobile number or Patient ID, then select the correct patient.
         </p>
 
     </section>
