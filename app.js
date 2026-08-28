@@ -311,6 +311,110 @@ ${error.message}`,
 
 
 /* ---------------------------------------------------------
+   FIND PATIENT FOR NEXT APPOINTMENT
+--------------------------------------------------------- */
+
+const patientSearchInput =
+    document.getElementById("patientSearch");
+
+const patientSearchResults =
+    document.getElementById("patientSearchResults");
+
+const selectedPatientBox =
+    document.getElementById("selectedPatient");
+
+let selectedPatient = null;
+let searchTimer = null;
+
+function clearPatientSelection() {
+    selectedPatient = null;
+    document.getElementById("patientId").value = "";
+    selectedPatientBox.classList.add("hidden");
+    selectedPatientBox.textContent = "";
+}
+
+function renderPatientResults(patients) {
+    patientSearchResults.innerHTML = "";
+
+    if (!patients.length) {
+        patientSearchResults.textContent = "No matching patients found.";
+        patientSearchResults.classList.remove("hidden");
+        return;
+    }
+
+    patients.forEach(function (patient) {
+        const item = document.createElement("button");
+        item.type = "button";
+        item.className = "patient-result";
+        item.innerHTML =
+            `<strong>${escapeHtml(patient.name)}</strong>` +
+            `<span>Mobile: ${escapeHtml(patient.mobile)}</span>` +
+            `<span>Patient ID: ${escapeHtml(patient.patientId)}</span>`;
+
+        item.addEventListener("click", function () {
+            selectedPatient = patient;
+            document.getElementById("patientId").value = patient.patientId;
+            patientSearchInput.value = patient.name;
+            patientSearchResults.classList.add("hidden");
+            selectedPatientBox.innerHTML =
+                `<strong>Selected patient</strong><br>` +
+                `${escapeHtml(patient.name)} · ${escapeHtml(patient.mobile)} · ${escapeHtml(patient.patientId)}`;
+            selectedPatientBox.classList.remove("hidden");
+        });
+
+        patientSearchResults.appendChild(item);
+    });
+
+    patientSearchResults.classList.remove("hidden");
+}
+
+function escapeHtml(value) {
+    return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+async function searchPatients(query) {
+    const result = await callApi({
+        action: "searchPatients",
+        query: query
+    });
+
+    if (!result.success) {
+        throw new Error(result.message || "Patient search failed.");
+    }
+
+    renderPatientResults(result.patients || []);
+}
+
+patientSearchInput.addEventListener("input", function () {
+    const query = patientSearchInput.value.trim();
+    clearPatientSelection();
+    clearTimeout(searchTimer);
+
+    if (query.length < 2) {
+        patientSearchResults.classList.add("hidden");
+        patientSearchResults.innerHTML = "";
+        return;
+    }
+
+    searchTimer = setTimeout(async function () {
+        patientSearchResults.textContent = "Searching...";
+        patientSearchResults.classList.remove("hidden");
+
+        try {
+            await searchPatients(query);
+        } catch (error) {
+            patientSearchResults.textContent = error.message;
+        }
+    }, 250);
+});
+
+
+/* ---------------------------------------------------------
    NEXT APPOINTMENT
 --------------------------------------------------------- */
 
@@ -333,16 +437,17 @@ nextAppointmentForm.addEventListener(
         );
 
 
+        if (!selectedPatient) {
+            showMessage("Please search for and select a patient first.", "error");
+            setBusy(button, false);
+            return;
+        }
+
         const payload = {
 
             action: "nextAppointment",
 
-            patientId:
-                document
-                    .getElementById("patientId")
-                    .value
-                    .trim()
-                    .toUpperCase(),
+            patientId: selectedPatient.patientId,
 
             appointmentDate:
                 document
@@ -385,7 +490,9 @@ Time: ${result.appointmentTime}`,
 
 
                 nextAppointmentForm.reset();
-
+                clearPatientSelection();
+                patientSearchResults.classList.add("hidden");
+                patientSearchResults.innerHTML = "";
 
                 setDefaultDates();
 
