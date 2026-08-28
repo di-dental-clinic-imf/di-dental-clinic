@@ -298,3 +298,21 @@ footer {
     }
 
 }
+
+/* WHATSAPP BUTTON */
+
+.whatsapp-button {
+    width: 100%;
+    margin-top: 12px;
+    border: 0;
+    border-radius: 10px;
+    padding: 14px;
+    background: #25D366;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.whatsapp-button:active {
+    opacity: 0.85;
+}
