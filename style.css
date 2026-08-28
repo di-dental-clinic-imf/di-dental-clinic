@@ -316,3 +316,56 @@ footer {
 .whatsapp-button:active {
     opacity: 0.85;
 }
+
+
+/* PATIENT SEARCH */
+.patient-search-results {
+    margin: -6px 0 16px;
+    border: 1px solid #d7e0e8;
+    border-radius: 10px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.patient-result {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 3px;
+    padding: 12px;
+    border: 0;
+    border-bottom: 1px solid #e5ebf0;
+    background: #fff;
+    color: #17202a;
+    text-align: left;
+    cursor: pointer;
+}
+
+.patient-result:last-child {
+    border-bottom: 0;
+}
+
+.patient-result:active {
+    background: #f1f6fa;
+}
+
+.patient-result strong {
+    font-size: 15px;
+}
+
+.patient-result span {
+    color: #667788;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.selected-patient {
+    margin: -2px 0 16px;
+    padding: 11px 12px;
+    border: 1px solid #b9e4c9;
+    border-radius: 10px;
+    background: #e8f7ee;
+    color: #176b3a;
+    font-size: 13px;
+    line-height: 1.45;
+}
