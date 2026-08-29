@@ -574,10 +574,7 @@ document
                     "active"
                 );
 
-                targetSection.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
+window.scrollTo({top:0,behavior:"smooth"});
 
 
                 messageBox.classList.add(
