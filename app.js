@@ -566,14 +566,18 @@ document
                     "active"
                 );
 
+                const targetSection = document.getElementById(
+                    tab.dataset.section
+                );
 
-                document
-                    .getElementById(
-                        tab.dataset.section
-                    )
-                    .classList.add(
-                        "active"
-                    );
+                targetSection.classList.add(
+                    "active"
+                );
+
+                targetSection.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
 
 
                 messageBox.classList.add(
