@@ -94,7 +94,7 @@ footer{text-align:center;color:#7b8b9b;font-size:12px;padding:9px 12px}
 
 /* MOBILE */
 @media (max-width:520px){
-  .header{border-radius:16px 16px 0 0}
+  .header{border-radius:20px 20px 0 0;overflow:hidden}
   .clinic-header-image{max-height:240px}
   .header p{font-size:14px;padding:11px 12px 13px}
   .tabs{padding:9px 10px}
