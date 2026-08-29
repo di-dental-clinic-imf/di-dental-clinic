@@ -94,7 +94,7 @@ footer{text-align:center;color:#7b8b9b;font-size:12px;padding:9px 12px}
 
 /* MOBILE */
 @media (max-width:520px){
-  .header{border-radius:20px 20px 0 0;overflow:hidden}
+  .header{border-radius:16px 16px 0 0;overflow:hidden}
   .clinic-header-image{max-height:360px}
   .header p{font-size:14px;padding:11px 12px 13px}
   .tabs{padding:9px 10px}
@@ -102,7 +102,7 @@ footer{text-align:center;color:#7b8b9b;font-size:12px;padding:9px 12px}
   .card{margin:14px 10px;padding:17px;border-radius:16px}
   h2{font-size:20px;margin-bottom:17px}
   .row{grid-template-columns:1fr;gap:0}
-  .primary,.whatsapp-button{padding:13px 14px}
+  .whatsapp-button{background:#25D366!important}
   .message{margin:14px 10px}
 }
 
