@@ -102,6 +102,7 @@ footer{text-align:center;color:#7b8b9b;font-size:12px;padding:9px 12px}
   .card{margin:14px 10px;padding:17px;border-radius:16px}
   h2{font-size:20px;margin-bottom:17px}
   .row{grid-template-columns:1fr;gap:0}
+  .primary,.whatsapp-button{padding:13px 14px}
   .whatsapp-button{background:#25D366!important}
   .message{margin:14px 10px}
 }
