@@ -457,6 +457,10 @@ nextAppointmentForm.addEventListener(
             appointmentTime:
                 document
                     .getElementById("nextAppointmentTime")
+                    .value,
+            treatment:
+                document
+                    .getElementById("treatmentType")
                     .value
         };
 
